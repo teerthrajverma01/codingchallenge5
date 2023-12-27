@@ -5,7 +5,7 @@ import java.util.Properties;
 
 public class DBPropertyUtil {
 
-	public static String getConnection(String propertyFileName) throws Exception{
+	public static String getPropertyString(String propertyFileName) throws Exception{
 		
 		
 		FileInputStream fis = new FileInputStream(propertyFileName);
