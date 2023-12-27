@@ -19,7 +19,7 @@ public class LoanManagment {
 	
 	public static void main(String[] args) throws Exception,InvalidLoanException{
 		
-		DBUtil.connect();
+		DBUtil.getDBConn();
 		
 		
 		
