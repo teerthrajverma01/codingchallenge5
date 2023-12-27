@@ -13,7 +13,7 @@ public class DBUtil {
 	public static Connection getDBConn()  {
 		try {
 		String propstr= DBPropertyUtil.getPropertyString("src/com/util/DB.properties");
-		con = DBConnUtil.getDBConnection(props);
+		con = DBConnUtil.getDBConnection(propstr);
 		}
 		catch (Exception e) {
 			System.out.println(e);
