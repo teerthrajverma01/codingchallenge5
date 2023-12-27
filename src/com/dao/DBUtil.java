@@ -10,7 +10,7 @@ public class DBUtil {
 
 	public static Connection con=null;
 	
-	public static Connection connect()  {
+	public static Connection getDBConn()  {
 		try {
 		Properties props = DBPropertyUtil.getConnection("src/com/util/DB.properties");
 		con = DBConnUtil.getDBConnection(props);
