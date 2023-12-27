@@ -5,7 +5,7 @@ import java.util.Properties;
 
 public class DBPropertyUtil {
 
-	public static Properties getConnection(String propertyFileName) throws Exception{
+	public static String getConnection(String propertyFileName) throws Exception{
 		
 		
 		FileInputStream fis = new FileInputStream(propertyFileName);
@@ -13,7 +13,9 @@ public class DBPropertyUtil {
 		Properties props =new Properties();
 		
 		props.load(fis);
-		return props;
+		String propstr=p1.getProperty("user")+" "+p1.getProperty("password")+" "+p1.getProperty("driver")+" "+p1.getProperty("url");
+		return propstr;
+		
 		
 	}
 
