@@ -2,7 +2,7 @@ package com.main;
 
 import java.util.Scanner;
 
-import com.dao.DAO;
+import com.dao.DBUtil;
 import com.dao.ILoanRepositoryImpl;
 import com.entity.model.CarLoan;
 import com.entity.model.HomeLoan;
@@ -19,7 +19,7 @@ public class LoanManagment {
 	
 	public static void main(String[] args) throws Exception,InvalidLoanException{
 		
-		DAO.connect();
+		DBUtil.connect();
 		
 		
 		
