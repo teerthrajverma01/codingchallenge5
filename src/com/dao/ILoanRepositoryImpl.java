@@ -20,7 +20,7 @@ public class ILoanRepositoryImpl implements ILoanRepository {
 	public void applyLoan(Loan obj )throws SQLException,InvalidLoanException{
 		try {
 			String q1 = "INSERT INTO loan(loanId, customerId, principalAmount, interestRate, loanTerm, loanType, loanStatus) values (?,?,?,?,?,?,?)";
-			PreparedStatement pstmt1 = DAO.con.prepareStatement(q1);
+			PreparedStatement pstmt1 = DBUtil.con.prepareStatement(q1);
 			pstmt1.setInt(1, obj.getLoanId());
 			pstmt1.setInt(2, obj.getCustomerId());
 			pstmt1.setDouble(3, obj.getPrincipalAmount());
@@ -32,7 +32,7 @@ public class ILoanRepositoryImpl implements ILoanRepository {
 			
 			if(obj.getLoanType() == "CarLoan") {
 				String q2 = "INSERT INTO carloan(loanId,carModel,carValue) values(?,?,?)";			
-				PreparedStatement pstmt2 = DAO.con.prepareStatement(q2);
+				PreparedStatement pstmt2 = DBUtil.con.prepareStatement(q2);
 				pstmt2.setInt(1, obj.getLoanId());
 				pstmt2.setString(2, ((CarLoan) obj).getCarModel());
 				pstmt2.setInt(3, ((CarLoan) obj).getCarValue());
@@ -40,7 +40,7 @@ public class ILoanRepositoryImpl implements ILoanRepository {
 			}
 			else if(obj.getLoanType() == "HomeLoan"){
 				String q2 = "INSERT INTO  homeloan(loanId,propertyAddress,propertyValue) values(?,?,?)";	
-				PreparedStatement pstmt2 = DAO.con.prepareStatement(q2);
+				PreparedStatement pstmt2 = DBUtil.con.prepareStatement(q2);
 				pstmt2.setInt(1, obj.getLoanId());
 				pstmt2.setString(2, ((HomeLoan) obj).getPropertyAddress());
 				pstmt2.setInt(3, ((HomeLoan) obj).getPropertyValue());
@@ -58,7 +58,7 @@ public class ILoanRepositoryImpl implements ILoanRepository {
 	public void loanStatus(int loanId) throws SQLException,InvalidLoanException{
 		try {
 				String q1 = "SELECT creditScore FROM Customer c JOIN Loan l ON c.customerID = l.customerID WHERE l.loanID = ?";
-				PreparedStatement pstmt1 = DAO.con.prepareStatement(q1);
+				PreparedStatement pstmt1 = DBUtil.con.prepareStatement(q1);
 				pstmt1.setInt(1,loanId);
 				ResultSet lstatus  = pstmt1.executeQuery();
 				int creditScore;
@@ -77,7 +77,7 @@ public class ILoanRepositoryImpl implements ILoanRepository {
 				}
 				
 				String updateLoanStatusQuery = "UPDATE Loan SET loanStatus = ? WHERE loanId = ?";
-	            PreparedStatement pstmt2= DAO.con.prepareStatement(updateLoanStatusQuery);
+	            PreparedStatement pstmt2= DBUtil.con.prepareStatement(updateLoanStatusQuery);
 	            pstmt2.setString(1, ls);
 	            pstmt2.setInt(2, loanId);
 	            int rowsAffected =pstmt2.executeUpdate();
@@ -96,7 +96,7 @@ public class ILoanRepositoryImpl implements ILoanRepository {
 		
 		List<Loan> loanList = new ArrayList<>();
 		try {
-			Statement stmt1 =  DAO.con.createStatement();
+			Statement stmt1 =  DBUtil.con.createStatement();
 			String q1 = "SELECT * FROM loan";	
 			ResultSet getAllLoanset = stmt1.executeQuery(q1);
 			
@@ -122,7 +122,7 @@ public class ILoanRepositoryImpl implements ILoanRepository {
 	
 	public void  getLoanById(int loanId) throws Exception{
 		String q1 = "SELECT * FROM loan WHERE loanId=?";
-		PreparedStatement pstmt1 =  DAO.con.prepareStatement(q1);	
+		PreparedStatement pstmt1 =  DBUtil.con.prepareStatement(q1);	
 		pstmt1.setInt(1, loanId);	
 		ResultSet loanbyid = pstmt1.executeQuery();
 		if (loanbyid.next()) {
@@ -185,7 +185,7 @@ public class ILoanRepositoryImpl implements ILoanRepository {
 	public  Loan loanDetail(int loanId) throws InvalidLoanException {
 		try {
 		String q1 = "SELECT * FROM loan WHERE loanId=?";
-		PreparedStatement pstmt1 =  DAO.con.prepareStatement(q1);
+		PreparedStatement pstmt1 =  DBUtil.con.prepareStatement(q1);
 		
 		pstmt1.setInt(1, loanId);
 		
