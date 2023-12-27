@@ -118,7 +118,7 @@ public class LoanManagment {
 			
 			
 			else {
-				DAO.con.close();
+				DBUtil.con.close();
 				break;
 			}
 		}
