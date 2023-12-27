@@ -11,13 +11,13 @@ public class DBConnUtil {
 	
 	
 
-	public static Connection getDBConnection(Properties props) throws Exception {
+	public static Connection getConnection(String props) throws Exception {
 	
-			
-		String Url=props.getProperty("url")	;
-		String User=props.getProperty("user")	;
-		String Password=props.getProperty("password")	;
-		String Driver=props.getProperty("driver")	;
+		String[] properties=props.split(" ");	
+		String Url=properties[3];
+		String User=properties[0];
+		String Password=properties[1];
+		String Driver=properties[2];
 			
 		Class.forName(Driver);
 		System.out.println("Driver is loaded");
