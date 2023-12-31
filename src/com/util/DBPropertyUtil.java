@@ -13,7 +13,7 @@ public class DBPropertyUtil {
 		Properties props =new Properties();
 		
 		props.load(fis);
-		String propstr=p1.getProperty("user")+" "+p1.getProperty("password")+" "+p1.getProperty("driver")+" "+p1.getProperty("url");
+		String propstr=props.getProperty("user")+" "+props.getProperty("password")+" "+props.getProperty("driver")+" "+props.getProperty("url");
 		return propstr;
 		
 		
